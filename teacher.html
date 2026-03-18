@@ -496,7 +496,7 @@
 <script>
 // ── 설정 ──────────────────────────────────────────
 // ★ 여기에 Google Apps Script 웹앱 URL을 붙여넣으세요
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbzPxUAwWUZkKYrZdoFn5AcKx0hciKawq7TbP8t7DetJsaoP67wsglkLEgIKPzRMU8H5/exec';
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbzS1sJo_UvM-445gDmulExFpNt3TynhxRIRz3n8YEoYfBRFYV4uKcdikug-mcToi6U/exec';
 
 // 학생 체크인 페이지 URL (student.html이 올라간 주소)
 const STUDENT_URL = location.href.replace('teacher.html', 'student.html');
@@ -655,7 +655,7 @@ let pollInterval = null;
 const seenIds = new Set();
 
 function startPolling() {
-  if (GAS_URL === 'https://script.google.com/macros/s/AKfycbzPxUAwWUZkKYrZdoFn5AcKx0hciKawq7TbP8t7DetJsaoP67wsglkLEgIKPzRMU8H5/exec') return; // URL 미설정 시 스킵
+  if (GAS_URL === 'https://script.google.com/macros/s/AKfycbzS1sJo_UvM-445gDmulExFpNt3TynhxRIRz3n8YEoYfBRFYV4uKcdikug-mcToi6U/exec') return; // URL 미설정 시 스킵
   pollInterval = setInterval(async () => {
     try {
       const res = await fetch(`${GAS_URL}?action=getCheckins&session=${sessionCode}`);
