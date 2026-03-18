@@ -6,290 +6,101 @@
 <title>탑클래스 체크인</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
-
   :root {
-    --bg: #f8f8fc;
-    --card: #ffffff;
-    --border: #e8e8f0;
-    --accent: #4f6ef7;
-    --accent-light: #eef0fe;
-    --danger: #ef4444;
-    --danger-light: #fef2f2;
-    --success: #10b981;
-    --success-light: #ecfdf5;
-    --warn: #f59e0b;
-    --warn-light: #fffbeb;
-    --text: #1a1a2e;
-    --muted: #9090a0;
+    --bg: #f8f8fc; --card: #ffffff; --border: #e8e8f0;
+    --accent: #4f6ef7; --accent-light: #eef0fe;
+    --danger: #ef4444; --danger-light: #fef2f2;
+    --success: #10b981; --success-light: #ecfdf5;
+    --warn: #f59e0b; --warn-light: #fffbeb;
+    --text: #1a1a2e; --muted: #9090a0;
   }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
   body {
-    background: var(--bg);
-    font-family: 'Noto Sans KR', sans-serif;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 24px 20px;
+    background:var(--bg); font-family:'Noto Sans KR',sans-serif;
+    min-height:100vh; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; padding:24px 20px;
   }
-
   .card {
-    background: var(--card);
-    border-radius: 24px;
-    border: 1px solid var(--border);
-    padding: 32px 28px;
-    width: 100%;
-    max-width: 380px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    background:var(--card); border-radius:24px; border:1px solid var(--border);
+    padding:32px 28px; width:100%; max-width:380px;
+    box-shadow:0 4px 24px rgba(0,0,0,0.06);
   }
-
-  .app-logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 28px;
-  }
-
+  .app-logo { display:flex; align-items:center; gap:10px; margin-bottom:28px; }
   .logo-icon {
-    width: 36px;
-    height: 36px;
-    background: var(--accent);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
+    width:36px; height:36px; background:var(--accent); border-radius:10px;
+    display:flex; align-items:center; justify-content:center; font-size:18px; color:#fff;
   }
-
-  .logo-text {
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--text);
-  }
-
-  .logo-sub {
-    font-size: 11px;
-    color: var(--muted);
-    margin-top: 1px;
-  }
-
-  /* 토큰 상태 */
+  .logo-text { font-size:15px; font-weight:700; color:var(--text); }
+  .logo-sub { font-size:11px; color:var(--muted); margin-top:1px; }
   .token-status {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 14px;
-    border-radius: 12px;
-    margin-bottom: 24px;
-    font-size: 12px;
-    font-weight: 500;
+    display:flex; align-items:center; gap:8px; padding:10px 14px;
+    border-radius:12px; margin-bottom:16px; font-size:12px; font-weight:500;
   }
-
-  .token-valid {
-    background: var(--success-light);
-    color: var(--success);
-    border: 1px solid rgba(16,185,129,0.2);
-  }
-
-  .token-invalid {
-    background: var(--danger-light);
-    color: var(--danger);
-    border: 1px solid rgba(239,68,68,0.2);
-  }
-
-  .token-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
-  .token-valid .token-dot { background: var(--success); }
-  .token-invalid .token-dot { background: var(--danger); }
-
-  /* 만료 카운터 */
-  .expire-bar {
-    height: 3px;
-    background: var(--border);
-    border-radius: 2px;
-    margin-bottom: 24px;
-    overflow: hidden;
-  }
-
-  .expire-fill {
-    height: 100%;
-    background: var(--success);
-    border-radius: 2px;
-    transition: width 0.9s linear, background 0.3s;
-  }
-
-  /* 폼 */
-  .form-group {
-    margin-bottom: 16px;
-  }
-
-  .form-label {
-    display: block;
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--muted);
-    margin-bottom: 8px;
-    letter-spacing: 0.04em;
-  }
-
+  .token-valid { background:var(--success-light); color:var(--success); border:1px solid rgba(16,185,129,0.2); }
+  .token-invalid { background:var(--danger-light); color:var(--danger); border:1px solid rgba(239,68,68,0.2); }
+  .token-dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+  .token-valid .token-dot { background:var(--success); }
+  .token-invalid .token-dot { background:var(--danger); }
+  .expire-bar { height:3px; background:var(--border); border-radius:2px; margin-bottom:20px; overflow:hidden; }
+  .expire-fill { height:100%; background:var(--success); border-radius:2px; transition:width 0.9s linear, background 0.3s; }
+  .form-group { margin-bottom:16px; }
+  .form-label { display:block; font-size:12px; font-weight:500; color:var(--muted); margin-bottom:8px; }
   .form-select {
-    width: 100%;
-    padding: 14px 16px;
-    font-size: 15px;
-    font-family: 'Noto Sans KR', sans-serif;
-    border: 1.5px solid var(--border);
-    border-radius: 14px;
-    background: var(--bg);
-    color: var(--text);
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239090a0' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 16px center;
-    cursor: pointer;
-    transition: border-color 0.15s;
+    width:100%; padding:14px 16px; font-size:15px; font-family:'Noto Sans KR',sans-serif;
+    border:1.5px solid var(--border); border-radius:14px; background:var(--bg); color:var(--text);
+    appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239090a0' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat:no-repeat; background-position:right 16px center; cursor:pointer;
   }
-
-  .form-select:focus {
-    outline: none;
-    border-color: var(--accent);
-  }
-
-  /* 제출 버튼 */
+  .form-select:focus { outline:none; border-color:var(--accent); }
   .submit-btn {
-    width: 100%;
-    padding: 16px;
-    background: var(--accent);
-    color: #fff;
-    border: none;
-    border-radius: 14px;
-    font-size: 15px;
-    font-weight: 700;
-    font-family: 'Noto Sans KR', sans-serif;
-    cursor: pointer;
-    transition: all 0.15s;
-    margin-top: 8px;
-    letter-spacing: 0.02em;
+    width:100%; padding:16px; background:var(--accent); color:#fff; border:none;
+    border-radius:14px; font-size:15px; font-weight:700; font-family:'Noto Sans KR',sans-serif;
+    cursor:pointer; margin-top:8px;
   }
-
-  .submit-btn:active { transform: scale(0.98); }
-  .submit-btn:disabled { background: var(--border); color: var(--muted); cursor: not-allowed; }
-  .submit-btn.loading { background: var(--muted); }
-
-  /* 결과 화면 */
-  .result { display: none; text-align: center; padding: 8px 0; }
-  .result.show { display: block; }
-
+  .submit-btn:active { transform:scale(0.98); }
+  .submit-btn:disabled { background:var(--border); color:var(--muted); cursor:not-allowed; }
+  .result { display:none; text-align:center; padding:8px 0; }
+  .result.show { display:block; }
   .result-icon {
-    width: 72px;
-    height: 72px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 32px;
-    margin: 0 auto 16px;
+    width:72px; height:72px; border-radius:50%; display:flex; align-items:center;
+    justify-content:center; font-size:32px; margin:0 auto 16px;
   }
-
-  .result-success .result-icon { background: var(--success-light); }
-  .result-error .result-icon { background: var(--danger-light); }
-
-  .result-title {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
-
-  .result-success .result-title { color: var(--success); }
-  .result-error .result-title { color: var(--danger); }
-
-  .result-desc {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.6;
-    margin-bottom: 20px;
-  }
-
-  .result-name {
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 4px;
-  }
-
-  .result-time {
-    font-size: 12px;
-    color: var(--muted);
-    margin-bottom: 6px;
-  }
-
-  .late-badge {
-    display: inline-block;
-    padding: 4px 12px;
-    background: var(--warn-light);
-    color: var(--warn);
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 500;
-    border: 1px solid rgba(245,158,11,0.2);
-  }
-
+  .result-success .result-icon { background:var(--success-light); }
+  .result-error .result-icon { background:var(--danger-light); }
+  .result-title { font-size:20px; font-weight:700; margin-bottom:8px; }
+  .result-success .result-title { color:var(--success); }
+  .result-error .result-title { color:var(--danger); }
+  .result-name { font-size:22px; font-weight:700; color:var(--text); margin-bottom:4px; }
+  .result-time { font-size:12px; color:var(--muted); margin-bottom:6px; }
+  .result-desc { font-size:13px; color:var(--muted); line-height:1.6; margin-bottom:20px; }
   .ok-badge {
-    display: inline-block;
-    padding: 4px 12px;
-    background: var(--success-light);
-    color: var(--success);
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 500;
-    border: 1px solid rgba(16,185,129,0.2);
+    display:inline-block; padding:4px 12px; background:var(--success-light); color:var(--success);
+    border-radius:20px; font-size:12px; font-weight:500; border:1px solid rgba(16,185,129,0.2);
   }
-
-  /* 만료 화면 */
-  .expired { display: none; text-align: center; padding: 8px 0; }
-  .expired.show { display: block; }
-
-  /* 에러 메시지 */
+  .late-badge {
+    display:inline-block; padding:4px 12px; background:var(--warn-light); color:var(--warn);
+    border-radius:20px; font-size:12px; font-weight:500; border:1px solid rgba(245,158,11,0.2);
+  }
   .error-msg {
-    padding: 10px 14px;
-    background: var(--danger-light);
-    color: var(--danger);
-    border-radius: 10px;
-    font-size: 12px;
-    margin-bottom: 12px;
-    border: 1px solid rgba(239,68,68,0.15);
-    display: none;
+    padding:10px 14px; background:var(--danger-light); color:var(--danger);
+    border-radius:10px; font-size:12px; margin-bottom:12px; display:none;
   }
-
-  .error-msg.show { display: block; }
-
-  .form-section { display: block; }
-  .form-section.hide { display: none; }
-
+  .error-msg.show { display:block; }
+  .form-section { display:block; }
+  .form-section.hide { display:none; }
+  .expired { display:none; text-align:center; padding:8px 0; }
+  .expired.show { display:block; }
   .spinner {
-    display: inline-block;
-    width: 18px;
-    height: 18px;
-    border: 2px solid rgba(255,255,255,0.3);
-    border-top-color: #fff;
-    border-radius: 50%;
-    animation: spin 0.7s linear infinite;
-    vertical-align: middle;
-    margin-right: 6px;
+    display:inline-block; width:18px; height:18px;
+    border:2px solid rgba(255,255,255,0.3); border-top-color:#fff;
+    border-radius:50%; animation:spin 0.7s linear infinite;
+    vertical-align:middle; margin-right:6px;
   }
-
-  @keyframes spin { to { transform: rotate(360deg); } }
+  @keyframes spin { to { transform:rotate(360deg); } }
 </style>
 </head>
 <body>
-
 <div class="card">
   <div class="app-logo">
     <div class="logo-icon">✓</div>
@@ -299,21 +110,17 @@
     </div>
   </div>
 
-  <!-- 토큰 상태 -->
   <div class="token-status" id="tokenStatus">
     <div class="token-dot"></div>
     <span id="tokenStatusText">확인 중...</span>
   </div>
 
-  <!-- 만료 바 -->
   <div class="expire-bar" id="expireBar">
     <div class="expire-fill" id="expireFill"></div>
   </div>
 
-  <!-- 폼 -->
   <div class="form-section" id="formSection">
     <div class="error-msg" id="errorMsg"></div>
-
     <div class="form-group">
       <label class="form-label">이름을 선택하세요</label>
       <select class="form-select" id="nameSelect">
@@ -337,11 +144,9 @@
         <option>윤하</option>
       </select>
     </div>
-
     <button class="submit-btn" id="submitBtn" onclick="submitCheckin()">체크인</button>
   </div>
 
-  <!-- 성공 -->
   <div class="result result-success" id="resultSuccess">
     <div class="result-icon">✓</div>
     <div class="result-name" id="resultName"></div>
@@ -350,14 +155,12 @@
     <div class="result-desc" style="margin-top:12px">체크인이 완료되었습니다.<br>창을 닫아도 됩니다.</div>
   </div>
 
-  <!-- 이미 체크인 -->
   <div class="result result-error" id="resultDuplicate">
     <div class="result-icon">!</div>
     <div class="result-title">이미 체크인됨</div>
-    <div class="result-desc" id="duplicateDesc">오늘 세션에 이미 체크인되어 있습니다.</div>
+    <div class="result-desc" id="duplicateDesc">이미 체크인되어 있습니다.</div>
   </div>
 
-  <!-- 만료 -->
   <div class="expired" id="expiredSection">
     <div style="font-size:48px;margin-bottom:16px;opacity:0.3">⏱</div>
     <div style="font-size:18px;font-weight:700;color:#1a1a2e;margin-bottom:8px">QR코드가 만료됨</div>
@@ -366,23 +169,19 @@
 </div>
 
 <script>
-// ── 설정 (teacher.html과 동일하게) ──────────────
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbzS1sJo_UvM-445gDmulExFpNt3TynhxRIRz3n8YEoYfBRFYV4uKcdikug-mcToi6U/exec';
-const SECRET = 'TOPCLASS2026';
-const WINDOW_SEC = 30;
-const TOLERANCE = 1; // 앞뒤 1 윈도우 허용 (최대 60초 관용)
+var GAS_URL = 'https://script.google.com/macros/s/AKfycbzS1sJo_UvM-445gDmulExFpNt3TynhxRIRz3n8YEoYfBRFYV4uKcdikug-mcToi6U/exec';
+var SECRET = 'TOPCLASS2026';
+var WINDOW_SEC = 30;
+var TOLERANCE = 1;
 
-// ── URL 파라미터 파싱 ─────────────────────────────
-const params = new URLSearchParams(location.search);
-const urlSession = params.get('session') || '';
-const urlToken = params.get('token') || '';
-const urlT = parseInt(params.get('t') || '0');
+var params = new URLSearchParams(location.search);
+var urlSession = params.get('session') || '';
+var urlToken = params.get('token') || '';
 
-// ── 토큰 검증 ─────────────────────────────────────
 function computeToken(sessionCode, windowIdx) {
-  const raw = SECRET + sessionCode + windowIdx;
-  let hash = 0;
-  for (let i = 0; i < raw.length; i++) {
+  var raw = SECRET + sessionCode + windowIdx;
+  var hash = 0;
+  for (var i = 0; i < raw.length; i++) {
     hash = ((hash << 5) - hash) + raw.charCodeAt(i);
     hash |= 0;
   }
@@ -391,59 +190,51 @@ function computeToken(sessionCode, windowIdx) {
 
 function isTokenValid() {
   if (!urlSession || !urlToken) return false;
-  const now = Math.floor(Date.now() / 1000 / WINDOW_SEC);
-  for (let offset = -TOLERANCE; offset <= TOLERANCE; offset++) {
+  var now = Math.floor(Date.now() / 1000 / WINDOW_SEC);
+  for (var offset = -TOLERANCE; offset <= TOLERANCE; offset++) {
     if (computeToken(urlSession, now + offset) === urlToken) return true;
   }
   return false;
 }
 
-// ── 만료 타이머 ──────────────────────────────────
-let valid = false;
-let expireInterval = null;
-
 function getSecondsLeft() {
-  const nowSec = Math.floor(Date.now() / 1000);
-  const windowEnd = (Math.floor(nowSec / WINDOW_SEC) + 1) * WINDOW_SEC;
-  // 허용 윈도우 끝 = 현재 윈도우 + TOLERANCE 윈도우
-  const allowedEnd = windowEnd + (TOLERANCE * WINDOW_SEC);
+  var nowSec = Math.floor(Date.now() / 1000);
+  var windowEnd = (Math.floor(nowSec / WINDOW_SEC) + 1) * WINDOW_SEC;
+  var allowedEnd = windowEnd + (TOLERANCE * WINDOW_SEC);
   return Math.max(0, allowedEnd - nowSec);
 }
 
+var expireInterval = null;
+
 function updateExpireBar() {
-  const total = (1 + TOLERANCE) * WINDOW_SEC;
-  const left = getSecondsLeft();
-  const pct = (left / total) * 100;
-  const fill = document.getElementById('expireFill');
+  var total = (1 + TOLERANCE) * WINDOW_SEC;
+  var left = getSecondsLeft();
+  var pct = (left / total) * 100;
+  var fill = document.getElementById('expireFill');
   if (fill) {
     fill.style.width = pct + '%';
     fill.style.background = pct > 30 ? '#10b981' : pct > 10 ? '#f59e0b' : '#ef4444';
   }
-
-  if (!valid) return;
-
   if (left <= 0) {
     clearInterval(expireInterval);
     showExpired();
   }
 }
 
+function setStatus(isValid, text) {
+  var el = document.getElementById('tokenStatus');
+  var txt = document.getElementById('tokenStatusText');
+  el.className = 'token-status ' + (isValid ? 'token-valid' : 'token-invalid');
+  txt.textContent = text;
+}
+
 function showExpired() {
-  valid = false;
   document.getElementById('formSection').classList.add('hide');
   document.getElementById('expiredSection').classList.add('show');
   document.getElementById('expireBar').style.display = 'none';
   setStatus(false, 'QR 만료 — 다시 스캔해주세요');
 }
 
-function setStatus(isValid, text) {
-  const el = document.getElementById('tokenStatus');
-  const txt = document.getElementById('tokenStatusText');
-  el.className = 'token-status ' + (isValid ? 'token-valid' : 'token-invalid');
-  txt.textContent = text;
-}
-
-// ── 초기화 ───────────────────────────────────────
 window.onload = function() {
   if (!urlSession || !urlToken) {
     setStatus(false, 'QR코드가 올바르지 않습니다');
@@ -451,80 +242,55 @@ window.onload = function() {
     document.getElementById('expireBar').style.display = 'none';
     return;
   }
-
-  valid = isTokenValid();
-
-  if (!valid) {
-    showExpired();
-    return;
-  }
-
-  setStatus(true, `세션 ${urlSession} · 유효한 QR`);
-  document.getElementById('submitBtn').disabled = false;
-
+  if (!isTokenValid()) { showExpired(); return; }
+  setStatus(true, '세션 ' + urlSession + ' · 유효한 QR');
   updateExpireBar();
   expireInterval = setInterval(updateExpireBar, 1000);
 };
 
-// ── 체크인 제출 ──────────────────────────────────
-async function submitCheckin() {
-  const name = document.getElementById('nameSelect').value;
-  if (!name) {
-    showError('이름을 선택해주세요.');
+function submitCheckin() {
+  var name = document.getElementById('nameSelect').value;
+  if (!name) { showError('이름을 선택해주세요.'); return; }
+  if (!isTokenValid()) { showExpired(); return; }
+
+  // 기기당 1회 제한
+  var key = 'checkin_' + urlSession;
+  if (localStorage.getItem(key)) {
+    showDuplicate(name);
     return;
   }
 
-  if (!isTokenValid()) {
-    showExpired();
-    return;
-  }
-
-  const btn = document.getElementById('submitBtn');
+  var btn = document.getElementById('submitBtn');
   btn.disabled = true;
   btn.innerHTML = '<span class="spinner"></span>처리 중...';
   hideError();
 
-  const now = new Date();
-  const timeStr = now.toLocaleTimeString('ko-KR', {hour:'2-digit', minute:'2-digit'});
+  var now = new Date();
+  var timeStr = now.toLocaleTimeString('ko-KR', {hour:'2-digit', minute:'2-digit'});
+  var url = GAS_URL
+    + '?action=checkin'
+    + '&session=' + encodeURIComponent(urlSession)
+    + '&name=' + encodeURIComponent(name)
+    + '&time=' + encodeURIComponent(now.toISOString());
 
-  try {
-    if (_URL !== 'YOUR_APPS_SCRIPT_URL_HERE') {
-const res = await fetch(
-  `${GAS_URL}?action=checkin&session=${encodeURIComponent(urlSession)}&name=${encodeURIComponent(name)}&time=${encodeURIComponent(now.toISOString())}`,
-  {method: 'GET'}
-);
-      const data = await res.json();
-
-      if (data.status === 'duplicate') {
-        showDuplicate(name);
-        return;
-      }
-      if (data.status === 'error') {
-        showError(data.message || '오류가 발생했습니다.');
-        btn.disabled = false;
-        btn.textContent = '체크인';
-        return;
-      }
-    }
-
-    // 성공 처리 ( 미설정 시에도 성공으로 처리)
-    showSuccess(name, timeStr, now);
-
-  } catch(e) {
-    // 오프라인 또는  오류 시에도 성공으로 처리 (Sheets에서 나중에 확인)
-    showSuccess(name, timeStr, now);
-  }
+  fetch(url, {method:'GET', mode:'no-cors', redirect:'follow'})
+    .then(function() {
+      localStorage.setItem(key, '1');
+      showSuccess(name, timeStr);
+    })
+    .catch(function() {
+      localStorage.setItem(key, '1');
+      showSuccess(name, timeStr);
+    });
 }
 
-function showSuccess(name, timeStr, now) {
+function showSuccess(name, timeStr) {
   clearInterval(expireInterval);
   document.getElementById('formSection').classList.add('hide');
   document.getElementById('expireBar').style.display = 'none';
   document.getElementById('resultSuccess').classList.add('show');
   document.getElementById('resultName').textContent = name;
   document.getElementById('resultTime').textContent = timeStr + ' 체크인';
-
-  // 지각 여부는 서버에서 판단하지만 UI상 표시 (세션 시작 기준 없으므로 항상 정시 표시)
   document.getElementById('resultBadge').innerHTML = '<div class="ok-badge">✓ 체크인 완료</div>';
   setStatus(true, '체크인 완료');
 }
@@ -533,12 +299,12 @@ function showDuplicate(name) {
   document.getElementById('formSection').classList.add('hide');
   document.getElementById('expireBar').style.display = 'none';
   document.getElementById('resultDuplicate').classList.add('show');
-  document.getElementById('duplicateDesc').textContent = `${name} 학생은 이미 체크인되어 있습니다.`;
+  document.getElementById('duplicateDesc').textContent = name + ' 학생은 이미 체크인되어 있습니다.';
   setStatus(false, '중복 체크인');
 }
 
 function showError(msg) {
-  const el = document.getElementById('errorMsg');
+  var el = document.getElementById('errorMsg');
   el.textContent = msg;
   el.classList.add('show');
 }
