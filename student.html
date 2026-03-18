@@ -367,7 +367,7 @@
 
 <script>
 // ── 설정 (teacher.html과 동일하게) ──────────────
-const GAS_URL = 'YOUR_APPS_SCRIPT_URL_HERE';
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbz8bwrDhGPSu-ERK0vDr_27QJ2nq9PpoB5bh228FiyLbu-xH8k0kbw9ktk4NHIh3cM7/exec';
 const SECRET = 'TOPCLASS2026';
 const WINDOW_SEC = 30;
 const TOLERANCE = 1; // 앞뒤 1 윈도우 허용 (최대 60초 관용)
@@ -488,8 +488,8 @@ async function submitCheckin() {
   const timeStr = now.toLocaleTimeString('ko-KR', {hour:'2-digit', minute:'2-digit'});
 
   try {
-    if (GAS_URL !== 'YOUR_APPS_SCRIPT_URL_HERE') {
-      const res = await fetch(GAS_URL, {
+    if (_URL !== 'YOUR_APPS_SCRIPT_URL_HERE') {
+      const res = await fetch(_URL, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -513,11 +513,11 @@ async function submitCheckin() {
       }
     }
 
-    // 성공 처리 (GAS 미설정 시에도 성공으로 처리)
+    // 성공 처리 ( 미설정 시에도 성공으로 처리)
     showSuccess(name, timeStr, now);
 
   } catch(e) {
-    // 오프라인 또는 GAS 오류 시에도 성공으로 처리 (Sheets에서 나중에 확인)
+    // 오프라인 또는  오류 시에도 성공으로 처리 (Sheets에서 나중에 확인)
     showSuccess(name, timeStr, now);
   }
 }
