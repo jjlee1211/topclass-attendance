@@ -489,16 +489,10 @@ async function submitCheckin() {
 
   try {
     if (_URL !== 'YOUR_APPS_SCRIPT_URL_HERE') {
-      const res = await fetch(_URL, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-          action: 'checkin',
-          session: urlSession,
-          name: name,
-          time: now.toISOString()
-        })
-      });
+const res = await fetch(
+  `${GAS_URL}?action=checkin&session=${encodeURIComponent(urlSession)}&name=${encodeURIComponent(name)}&time=${encodeURIComponent(now.toISOString())}`,
+  {method: 'GET'}
+);
       const data = await res.json();
 
       if (data.status === 'duplicate') {
